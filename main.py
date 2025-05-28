@@ -1,11 +1,20 @@
-from parsing import ChatParser, ChatFormatter
+from parsing import ChatParser
+from filtering import ChatFormatter
 import re
+from datetime import datetime
 
 if __name__ == "__main__":
     algebra = ChatParser(r"Whatsapp_Groups\algebra.txt")
 
     algebra = algebra.set_df()
 
-    algebra = algebra.head(1000)
-    algebra.to_csv("test2.txt", index=False, encoding='utf-8-sig', sep='\t')
+    start = "2022-11-11"
+    end = "2023-03-10"
+
+    algebra = ChatFormatter(algebra)
+    algebra.set_start_date(start)
+    algebra.set_end_date(end)
+
+    print(algebra.df.head(100))
+
 
