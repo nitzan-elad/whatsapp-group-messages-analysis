@@ -1,9 +1,11 @@
-from subject import Subject
+from parsing import ChatParser, ChatFormatter
+import re
 
 if __name__ == "__main__":
-    algebra = Subject(r"Whatsapp_Groups\algebra.txt", 3.5)
+    algebra = ChatParser(r"Whatsapp_Groups\algebra.txt")
 
-    algebra.set_df()
-    print(algebra)
+    algebra = algebra.set_df()
 
+    algebra = algebra.head(1000)
+    algebra.to_csv("test2.txt", index=False, encoding='utf-8-sig', sep='\t')
 
